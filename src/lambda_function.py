@@ -24,8 +24,8 @@ def get_tweet():
     line_one = f"N{level}"
     line_two = f"{word} [{romaji}]" if len(furigana) == 0 else f"{word} [{furigana}] [{romaji}]"
     line_three = f"{meaning}"
-    line_four = short_url
-    line_five = "#JLPT #Japanese #日本語"
+    line_four = f"jisho: {short_url}"
+    line_five = f"#jlpt #n{level} #japanese #studyjapanese #learnjapanese #japan #日本語"
 
     text = """
     {line_one}
