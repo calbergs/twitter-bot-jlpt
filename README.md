@@ -1,3 +1,3 @@
 # Twitter JLPT Bot
 
-This is a bot that publishes random JLPT vocabulary every hour to the @jlpt_tango Twitter account using AWS Lambda.
+This is a bot that tweets randomized JLPT vocabulary every hour to the @jlpt_tango Twitter account using an AWS Lambda function.
