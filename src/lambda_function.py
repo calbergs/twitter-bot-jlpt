@@ -1,7 +1,9 @@
 import os
 import json
+import pyshorteners
 import requests
 import tweepy
+
 
 def get_tweet():
     response = requests.get("https://jlpt-vocab-api.vercel.app/api/words/random")
@@ -13,10 +15,17 @@ def get_tweet():
     romaji = data["romaji"]
     level = data["level"]
 
+    # Shorten the Jisho URL
+    long_url = f"https://jisho.org/search/{word}"
+    type_tiny = pyshorteners.Shortener()
+    short_url = type_tiny.tinyurl.short(long_url)
+
+    # Create the content of the tweet
     line_one = f"N{level}"
     line_two = f"{word} [{romaji}]" if len(furigana) == 0 else f"{word} [{furigana}] [{romaji}]"
     line_three = f"{meaning}"
-    line_four = "#JLPT #Japanese #日本語"
+    line_four = short_url
+    line_five = "#JLPT #Japanese #日本語"
 
     text = """
     {line_one}
@@ -26,14 +35,16 @@ def get_tweet():
     {line_three}
 
     {line_four}
+
+    {line_five}
     """.format(
         line_one=line_one,
         line_two=line_two,
         line_three=line_three,
         line_four=line_four,
+        line_five=line_five,
     )
     return text
-
 
 def lambda_handler(event, context):
     print("Get credentials")
