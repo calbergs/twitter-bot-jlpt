@@ -3,3 +3,5 @@ config.ini
 .env
 .DS_Store
 jlpt.py
+layer.zip
+lambda_function.zip
