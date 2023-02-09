@@ -1,5 +1,6 @@
 import os
 import json
+import requests
 import tweepy
 
 def get_tweet():
