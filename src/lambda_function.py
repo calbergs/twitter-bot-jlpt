@@ -3,6 +3,7 @@ import json
 import pyshorteners
 import requests
 import tweepy
+from textwrap import dedent
 
 
 def get_tweet():
@@ -28,11 +29,11 @@ def get_tweet():
     line_five = f"#jlpt #japanese #日本語"
 
     text = """
-{line_one}\n
-{line_two}\n
-{line_three}\n
-{line_four}\n
-{line_five}
+    {line_one}\n
+    {line_two}\n
+    {line_three}\n
+    {line_four}\n
+    {line_five}
     """.format(
         line_one=line_one,
         line_two=line_two,
@@ -40,7 +41,8 @@ def get_tweet():
         line_four=line_four,
         line_five=line_five,
     )
-    return text
+    tweet = dedent(text).strip("\n")
+    return tweet
 
 def lambda_handler(event, context):
     print("Get credentials")
