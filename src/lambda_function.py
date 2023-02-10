@@ -28,15 +28,11 @@ def get_tweet():
     line_five = f"#jlpt #japanese #日本語"
 
     text = """
-    {line_one}
-
-    {line_two}
-
-    {line_three}
-
-    {line_four}
-
-    {line_five}
+{line_one}\n
+{line_two}\n
+{line_three}\n
+{line_four}\n
+{line_five}
     """.format(
         line_one=line_one,
         line_two=line_two,
