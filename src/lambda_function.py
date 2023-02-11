@@ -1,8 +1,8 @@
 import os
 import json
-import pyshorteners
 import requests
 import tweepy
+import urllib.parse
 from textwrap import dedent
 
 
@@ -16,17 +16,16 @@ def get_tweet():
     romaji = data["romaji"]
     level = data["level"]
 
-    # Shorten the Jisho URL
-    long_url = f"https://jisho.org/search/{word}"
-    type_tiny = pyshorteners.Shortener()
-    short_url = type_tiny.tinyurl.short(long_url)
+    # Encode the Jisho URL
+    encoded_word = urllib.parse.quote_plus(word)
+    jisho_url = f"https://jisho.org/search/{encoded_word}"
 
     # Create the content of the tweet
     line_one = f"N{level}"
     line_two = f"{word}" if len(furigana) == 0 else f"{word} 【{furigana}】"
     line_three = f"{meaning}"
-    line_four = f"jisho: {short_url}"
-    line_five = f"#jlpt #japanese #日本語"
+    line_four = f"#jlpt #japanese #日本語"
+    line_five = f"{jisho_url}"
 
     text = """
     {line_one}\n
