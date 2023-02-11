@@ -23,7 +23,7 @@ def get_tweet():
 
     # Create the content of the tweet
     line_one = f"N{level}"
-    line_two = f"{word}" if len(furigana) == 0 else f"{word} [{furigana}]"
+    line_two = f"{word}" if len(furigana) == 0 else f"{word} 【{furigana}】"
     line_three = f"{meaning}"
     line_four = f"jisho: {short_url}"
     line_five = f"#jlpt #japanese #日本語"
