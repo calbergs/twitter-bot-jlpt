@@ -19,13 +19,14 @@ def get_tweet():
     # Encode the Jisho URL
     encoded_word = urllib.parse.quote_plus(word)
     jisho_url = f"https://jisho.org/search/{encoded_word}"
+    japandict_url = f"https://www.japandict.com/{encoded_word}"
 
     # Create the content of the tweet
     line_one = f"N{level}"
     line_two = f"{word}" if len(furigana) == 0 else f"{word} 【{furigana}】"
     line_three = f"{meaning}"
     line_four = f"#jlpt #japanese #日本語"
-    line_five = f"{jisho_url}"
+    line_five = f"{japandict_url}"
 
     text = """
     {line_one}\n
