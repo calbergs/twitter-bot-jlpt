@@ -8,12 +8,11 @@ from textwrap import dedent
 
 def get_tweet():
     # Get a new word if there are two different readings (a slash in the word) since the japandict link won't work
+    # OR get a new word if the meaning is empty
     while True:
         response = requests.get("https://jlpt-vocab-api.vercel.app/api/words/random")
         data = response.json()
-        if "/" in data["word"]:
-            continue
-        else:
+        if "/" not in data["word"] and data["meaning"] != "":
             break
 
     word = data["word"]
