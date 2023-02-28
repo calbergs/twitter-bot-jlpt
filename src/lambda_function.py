@@ -7,8 +7,14 @@ from textwrap import dedent
 
 
 def get_tweet():
-    response = requests.get("https://jlpt-vocab-api.vercel.app/api/words/random")
-    data = response.json()
+    # Get a new word if there are two different readings (a slash in the word) since the japandict link won't work
+    while True:
+        response = requests.get("https://jlpt-vocab-api.vercel.app/api/words/random")
+        data = response.json()
+        if "/" in data["word"]:
+            continue
+        else:
+            break
 
     word = data["word"]
     meaning = data["meaning"]
@@ -16,7 +22,7 @@ def get_tweet():
     romaji = data["romaji"]
     level = data["level"]
 
-    # Encode the Jisho URL
+    # Encode the URL
     encoded_word = urllib.parse.quote_plus(word)
     jisho_url = f"https://jisho.org/search/{encoded_word}"
     japandict_url = f"https://www.japandict.com/{encoded_word}"
