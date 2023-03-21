@@ -5,3 +5,4 @@ config.ini
 jlpt.py
 layer.zip
 lambda_function.zip
+tests.ipynb
