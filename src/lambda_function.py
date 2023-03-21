@@ -13,7 +13,7 @@ def get_tweet():
     while True:
         response = requests.get("https://jlpt-vocab-api.vercel.app/api/words/random")
         data = response.json()
-        if "/" not in data["word"] and data["meaning"] != "" and data["furigana"] != "":
+        if "/" not in data["word"] and data["meaning"] != "" and data["furigana"] != "" and "/" not in data["furigana"]:
             break
 
     word = data["word"]
